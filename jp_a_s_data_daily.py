@@ -14,8 +14,7 @@ os.system(('wget \
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N'\
-        )\
-        .format(csvex_id,csvex_pass))
+        ).format(csvex_id,csvex_pass))
 
 download_time = datetime.fromtimestamp(os.stat('/Users/shin/Downloads/japan-all-stock-data.csv').st_mtime)
 

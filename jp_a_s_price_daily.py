@@ -17,19 +17,15 @@ os.system(('wget \
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N'\
-        ) \
-        .format(csvex_id,csvex_pass))
+        ).format(csvex_id,csvex_pass))
 
-columns = [\
-        'st_code','name','market','industry','date','st_pr','dbr_y','dbr_per','ld_cl_pr','start',\
-        'high','low','vol','value','capi','low_lim','upp_lim'\
-        ]
+columns = ['st_code','name','market','industry','date','st_pr','dbr_y','dbr_per','ld_cl_pr','start',
+        'high','low','vol','value','capi','low_lim','upp_lim']
 
 os.system('nkf \
         -w \
         --overwrite \
-        /Users/shin/Downloads/japan-all-stock-prices.csv'\
-        )
+        /Users/shin/Downloads/japan-all-stock-prices.csv')
 
 csv_files = glob('/Users/shin/Downloads/japan-all-stock-price*.csv')
 list = []
@@ -46,5 +42,4 @@ df.to_sql(\
         'jp_al_st_pr', \
         engine, \
         if_exists = 'append', \
-        index=False\
-        )
+        index=False)
