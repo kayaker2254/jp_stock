@@ -6,16 +6,22 @@
 # module 読み込み。
 import pandas as pd
 from sqlalchemy import create_engine
-import os
+from os.path import join, relpath
+from glob import glob
+import os, sys
+
+sys.path.append('/Users/shin/stubby')
+from csvex import *
 
 # CSVファイルをダウンロード
-os.system('\
-        wget --http-user="kayaker219" "\
-        --http-passwd="ib+wVTz8"\
+os.system(('\
+        wget --http-user={0)\
+        --http-passwd={1}\
         "https://csvex.com/kabu.plus/csv/japan-all-stock-information/monthly/shareholding-ratio.csv" \
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
-        -N')
+        -N') \
+        .format(csvex_id,csvex_pass))
 
 # csvファイルをダウンロードした日時をデータフレームに加える為の準備。
 sh_dt = datetime.datetime.fromtimestamp(os.stat('/Users/shin/Downloads/shareholding-ratio.csv').st_mtime)

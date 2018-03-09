@@ -4,15 +4,18 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 from datetime import datetime,timedelta
+sys.path.append('/Users/shin/stubby')
+from csvex import *
 
-os.system(\
-        'wget --http-user="kayaker219" \
-        --http-passwd="ib+wVTz8" \
+os.system((\
+        'wget --http-user={0} \
+        --http-passwd={1} \
         "https://csvex.com/kabu.plus/csv/japan-all-stock-financial-results/monthly/japan-all-stock-financial-results.csv"
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N'\
-        )
+        ) \
+        .format(csvex_id,csvex_pass))
 
 os.system(\
         'nkf \
