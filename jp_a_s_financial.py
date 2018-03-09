@@ -6,9 +6,9 @@ import os
 from datetime import datetime,timedelta
 
 os.system(\
-        'wget --http-user="trial" \
-        --http-passwd="PW@20170129" \
-        "https://hesonogoma.com/stocks/download/csv/japan-all-stock-financial-results/monthly/japan-all-stock-financial-results.csv" \
+        'wget --http-user="kayaker219" \
+        --http-passwd="ib+wVTz8" \
+        "https://csvex.com/kabu.plus/csv/japan-all-stock-financial-results/monthly/japan-all-stock-financial-results.csv"
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N'\

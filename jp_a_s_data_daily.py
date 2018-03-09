@@ -2,17 +2,20 @@ from os.path import join, relpath
 from glob import glob
 import pandas as pd
 from sqlalchemy import create_engine
-import os
+import os, sys
 from datetime import datetime,timedelta
+sys.path.append('/Users/shin/stubby')
+from csvex import *
 
-os.system('wget\
-        --http-user="trial"\
-        --http-passwd="PW@20170129"\
-        "https://hesonogoma.com/stocks/download/csv/japan-all-stock-data/daily/japan-all-stock-data.csv" \
+os.system(('wget\
+        --http-user={0}\
+        --http-passwd={1}\
+        "https://csvex.com/kabu.plus/csv/japan-all-stock-data/daily/japan-all-stock-data.csv" \
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N'\
-        )
+        ) \
+        .format(csvex_id,csvex_pass))
 
 download_time = datetime.fromtimestamp(os.stat('/Users/shin/Downloads/japan-all-stock-data.csv').st_mtime)
 
@@ -49,9 +52,9 @@ data_daily['get_date'] = pd.to_datetime(data_daily['get_date'])
 
 engine = create_engine('postgresql://shinya@localhost:5432/stock')
 
-data_daily.to_sql('jp_al_st_data_daily', \
+data_daily.to_sql(
+        'jp_al_st_data_daily', \
         engine, \
         if_exists = 'append', \
         index=False \
         )
-

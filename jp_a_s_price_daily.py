@@ -2,19 +2,23 @@ from os.path import join, relpath
 from glob import glob
 import pandas as pd
 from sqlalchemy import create_engine
-import os
+import os, sys
 
-#path = '/Users/shin/Downloads/'
-#csv_files = [relpath(x, path) for x in glob(join(path, '*'))]
+# path = '/Users/shin/Downloads/'
+# csv_files = [relpath(x, path) for x in glob(join(path, '*'))]
 
-os.system('wget \
-        --http-user="trial" \
-        --http-passwd="PW@20170129" \
-        "https://hesonogoma.com/stocks/download/csv/japan-all-stock-prices/daily/japan-all-stock-prices.csv" \
+sys.path.append('/Users/shin/stubby')
+from csvex import *
+
+os.system(('wget \
+        --http-user={0} \
+        --http-passwd={1} \
+        "https://csvex.com/kabu.plus/csv/japan-all-stock-prices/daily/japan-all-stock-prices.csv" \
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N'\
-        )
+        ) \
+        .format(csvex_id,csvex_pass))
 
 columns = [\
         'st_code','name','market','industry','date','st_pr','dbr_y','dbr_per','ld_cl_pr','start',\
@@ -44,4 +48,3 @@ df.to_sql(\
         if_exists = 'append', \
         index=False\
         )
-
