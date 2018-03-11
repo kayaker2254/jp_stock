@@ -4,8 +4,10 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os, sys
 from datetime import datetime,timedelta
-sys.path.append('/Users/shin/stubby')
-from csvex import *
+import shelve
+csvex = shelve.open('/Users/shin/stubby/csvex')
+csvex_id = csvex['csvex_id']
+csvex_pass = csvex['csvex_pass']
 
 os.system(('wget \
         --http-user={0} \
@@ -15,6 +17,8 @@ os.system(('wget \
         -NP /Users/shin/Downloads/ \
         -N'\
         ).format(csvex_id,csvex_pass))
+
+csvex.close()
 
 download_time = datetime.fromtimestamp(os.stat('/Users/shin/Downloads/japan-all-stock-data.csv').st_mtime)
 

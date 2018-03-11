@@ -4,8 +4,10 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 from datetime import datetime,timedelta
-sys.path.append('/Users/shin/stubby')
-from csvex import *
+import shelve
+csvex = shelve.open('/Users/shin/stubby/csvex')
+csvex_id = csvex['csvex_id']
+csvex_pass = csvex['csvex_pass']
 
 os.system((
         'wget --http-user={0} \
@@ -14,6 +16,8 @@ os.system((
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N').format(csvex_id,csvex_pass))
+
+csvex.close()
 
 os.system(
         'nkf \
