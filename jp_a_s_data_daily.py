@@ -8,6 +8,7 @@ import shelve
 csvex = shelve.open('/Users/shin/stubby/csvex')
 csvex_id = csvex['csvex_id']
 csvex_pass = csvex['csvex_pass']
+csvex.close()
 
 os.system(('wget \
         --http-user={0} \
@@ -17,8 +18,6 @@ os.system(('wget \
         -NP /Users/shin/Downloads/ \
         -N'\
         ).format(csvex_id,csvex_pass))
-
-csvex.close()
 
 download_time = datetime.fromtimestamp(os.stat('/Users/shin/Downloads/japan-all-stock-data.csv').st_mtime)
 

@@ -13,6 +13,7 @@ import shelve
 csvex = shelve.open('/Users/shin/stubby/csvex')
 csvex_id = csvex['csvex_id']
 csvex_pass = csvex['csvex_pass']
+csvex.close()
 
 # CSVファイルをダウンロード
 os.system(('\
@@ -22,8 +23,6 @@ os.system(('\
         -P /Users/shin/Downloads/ \
         -NP /Users/shin/Downloads/ \
         -N').format(csvex_id,csvex_pass))
-
-csvex.close()
 
 # csvファイルをダウンロードした日時をデータフレームに加える為の準備。
 sh_dt = datetime.datetime.fromtimestamp(os.stat('/Users/shin/Downloads/shareholding-ratio.csv').st_mtime)

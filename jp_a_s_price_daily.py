@@ -11,6 +11,7 @@ import shelve
 csvex = shelve.open('/Users/shin/stubby/csvex')
 csvex_id = csvex['csvex_id']
 csvex_pass = csvex['csvex_pass']
+csvex.close()
 
 os.system(('wget \
         --http-user={0} \
@@ -20,8 +21,6 @@ os.system(('wget \
         -NP /Users/shin/Downloads/ \
         -N'\
         ).format(csvex_id,csvex_pass))
-
-csvex.close()
 
 columns = ['st_code','name','market','industry','date','st_pr','dbr_y','dbr_per','ld_cl_pr','start',
         'high','low','vol','value','capi','low_lim','upp_lim']
